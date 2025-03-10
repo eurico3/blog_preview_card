@@ -1,36 +1,43 @@
+/* Reset Default Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* -webkit-font-smoothing: antialiased; */
-  }
-  
-  :root {
+}
+
+/* Color and Font Variables */
+:root {
     --yellow: hsl(47, 88%, 63%);
     --white: hsl(0, 0%, 100%);
     --grey-500: hsl(0, 0%, 42%);
     --grey-950: hsl(0, 0%, 7%);
     --dark: hsl(0, 0%, 0%);
-    --font-24: 24px;
-    --font-20: 20px;
-    --font-16: 16px;
-    --font-14: 14px;
+    
     --spacing-24: 24px;
     --spacing-12: 12px;
-  }
-  
-  body {
+
+    /* Dynamic Font Sizes - Adjusts Without Media Queries */
+    --font-24: clamp(18px, 5vw, 24px);
+    --font-20: clamp(16px, 4.5vw, 20px);
+    --font-16: clamp(14px, 4vw, 16px);
+    --font-14: clamp(12px, 3.5vw, 14px);
+}
+
+/* Page Background */
+body {
     background-color: var(--yellow);
     font-family: "Figtree", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-  }
-  
-  .card {
-    max-width: 100%;
-    width: 384px;
+    padding: var(--spacing-24);
+}
+
+/* Card Container */
+.card {
+    max-width: 384px;
+    width: 90%;
     background-color: var(--white);
     border-radius: 20px;
     overflow: hidden;
@@ -39,27 +46,33 @@
     flex-direction: column;
     align-items: flex-start;
     border: 1px solid var(--grey-950);
-    box-shadow: 8px 8px 0px 0px var(--dark);
-  }
-  
-  .card-img {
+    box-shadow: 6px 6px 0px var(--dark);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Card Hover Effect */
+.card:hover {
+    box-shadow: 10px 10px 0px var(--dark);
+}
+
+/* Article Image */
+.card-img {
     width: 100%;
     border-radius: 10px;
-  }
-  
-  .card-article {
+}
+
+/* Article Section */
+.card-article {
     margin: var(--spacing-24) 0;
-  }
-  
-  .card-article > * {
+}
+
+/* Add Spacing Between Elements */
+.card-article > * {
     margin-top: var(--spacing-12);
-  }
-  
-  .card-article > *:first-child {
-    margin-top: 0;
-  }
-  
-  .article-tag {
+}
+
+/* Article Tag */
+.article-tag {
     background-color: var(--yellow);
     display: inline-block;
     font-size: var(--font-14);
@@ -68,59 +81,71 @@
     padding: 4px var(--spacing-12);
     border-radius: 4px;
     line-height: 150%;
-  }
-  
-  .article-publish-time {
+}
+
+/* Publish Date */
+.article-publish-time {
     display: block;
     font-size: var(--font-14);
     font-weight: 500;
     color: var(--grey-950);
     line-height: 150%;
-  }
-  
-  .article-title {
-    font-size: clamp(var(--font-20), 5vw, var(--font-24));
+}
+
+/* Article Title */
+.article-title {
+    font-size: var(--font-24);
     font-weight: 800;
     color: var(--grey-950);
     line-height: 150%;
     transition: color 0.3s ease-in-out;
-  }
-  
-  .article-title:hover {
+}
+
+/* Hover & Focus Effects for Title */
+.article-title:hover, .article-title:focus {
     color: var(--yellow);
     cursor: pointer;
-  }
-  
-  .article-description {
+}
+
+/* Article Description */
+.article-description {
     font-size: var(--font-16);
     font-weight: 500;
     color: var(--grey-500);
     line-height: 150%;
-  }
-  
-  .card-author {
+}
+
+/* Author Section */
+.card-author {
     display: flex;
     align-items: center;
-  }
-  
-  .author-avatar {
+    gap: var(--spacing-12);
+}
+
+/* Author Avatar */
+.author-avatar {
     width: 32px;
     height: auto;
-    margin-right: var(--spacing-12);
-  }
-  
-  .author-name {
-    display: inline-block;
+    border-radius: 50%;
+}
+
+/* Author Name */
+.author-name {
     font-size: var(--font-14);
     font-weight: 800;
     color: var(--grey-950);
     line-height: 150%;
-  }
-  
-  @media (max-width: 400px) {
-    .card {
-      width: 90%;
-      margin: 0 auto;
-      padding: var(--spacing-12);
-    }
-  }
+}
+
+/* Improve Accessibility: Hover & Focus States */
+.article-tag:hover, .article-tag:focus {
+    background-color: var(--grey-950);
+    color: var(--yellow);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Add Focus States for Keyboard Users */
+.article-title:focus, .article-tag:focus, .author-name:focus {
+    outline: 2px dashed var(--dark);
+    outline-offset: 3px;
+}
